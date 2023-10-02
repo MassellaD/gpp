@@ -1,0 +1,90 @@
+#include <iostream>
+
+// Definicion de la clase Calculadora
+class Calculadora {
+public:
+    // Metodo para sumar dos numeros
+    double sumar(double num1, double num2) {
+        return num1 + num2;
+    }
+
+    // Metodo para restar dos numeros
+    double restar(double num1, double num2) {
+        return num1 - num2;
+    }
+
+    // Metodo para multiplicar dos numeros
+    double multiplicar(double num1, double num2) {
+        return num1 * num2;
+    }
+
+    // Metodo para dividir dos numeros
+    double dividir(double num1, double num2) {
+        if (num2 != 0) {
+            return num1 / num2;
+        } else {
+            // Manejo del caso de division por cero
+            std::cout << "Error: Division por cero" << std::endl;
+            return 0.0;
+        }
+    }
+};
+
+int main() {
+    // Creacion de una instancia de la clase Calculadora
+    Calculadora calculadora;
+    double num1, num2;
+    char operador;
+    char opcion;
+
+    do {
+        // Entrada de usuario: primer numero
+        std::cout << "Ingrese el primer numero: ";
+        std::cin >> num1;
+        // Entrada de usuario: segundo numero
+        std::cout << "Ingrese el segundo numero: ";
+        std::cin >> num2;
+        // Entrada de usuario: operador (+, -, *, /) o 'q' para salir
+        std::cout << "Ingrese el operador (+, -, *, /) o 'q' para salir: ";
+        std::cin >> operador;
+
+        // Salir del bucle si el usuario elige salir
+        if (operador == 'q' || operador == 'Q') {
+            break;
+        }
+
+        double resultado;
+
+        // Utilizando un switch para determinar la operacion a realizar
+        switch (operador) {
+            case '+':
+                resultado = calculadora.sumar(num1, num2);
+                break;
+            case '-':
+                resultado = calculadora.restar(num1, num2);
+                break;
+            case '*':
+                resultado = calculadora.multiplicar(num1, num2);
+                break;
+            case '/':
+                resultado = calculadora.dividir(num1, num2);
+                break;
+            default:
+                // Manejo del caso de un operador no valido
+                std::cout << "Operador no valido" << std::endl;
+                continue; // Continuar con la siguiente iteracion del bucle
+        }
+
+        // Mostrar el resultado
+        std::cout << "Resultado: " << resultado << std::endl;
+
+        // Preguntar si el usuario desea realizar otra operacion
+        std::cout << "Desea realizar otra operacion? (S/N): ";
+        std::cin >> opcion;
+    } while (opcion != 'n' && opcion != 'N');
+
+    // Mensaje de despedida
+    std::cout << "Gracias por usar la calculadora!" << std::endl;
+
+    return 0; // Salida exitosa
+}
